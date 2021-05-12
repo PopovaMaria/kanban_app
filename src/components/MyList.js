@@ -1,11 +1,15 @@
 import React from "react";
 import MyCard from "./MyCard";
+import ActionButton from "./ActionButton";
 
-const MyList = ({title}) => {
+const MyList = ({title, cards}) => {
   return (
     <div style={styles.container}>
     <h4>{title}</h4>
-      <MyCard/>
+      { cards.map(card => (
+        <MyCard  key={card.id} text={card.text}/>
+        ))}
+        <ActionButton/>
     </div>
   )
 }
@@ -14,9 +18,11 @@ export default MyList;
 
 const styles = {
   container: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#dfe3e6',
     borderRadius: 3,
     width: 300,
-    padding: 8
+    padding: 8,
+    marginRight: 8,
+    height: "100%"
   }
 }
