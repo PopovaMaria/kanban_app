@@ -6,14 +6,14 @@ let cardId = 5;
 const initialState = [
   {
     title: 'ToDo',
-    id: 0,
+    id: 'list-${0}',
     cards: [
       {
-        id: 0,
+        id: 'card-${0}',
         text: 'invent an idea'
       },
       {
-        id: 1,
+        id: 'card-${1}',
         text: 'write it down'
       }
     ]
@@ -21,18 +21,18 @@ const initialState = [
 
   {
     title: 'In progress',
-    id: 1,
+    id: 'list-${1}',
     cards: [
       {
-        id: 2,
+        id: 'card-${2}',
         text: 'inventing an idea'
       },
       {
-        id: 3,
+        id: 'card-${3}',
         text: 'writing down'
       },
       {
-        id: 4,
+        id: 'card-${4}',
         text: 'writing down'
       }
     ]
@@ -46,7 +46,7 @@ const listsReducer = (state = initialState, action) => {
       const newList = {
         title: action.payload,
         cards: [],
-        id: listId
+        id: 'list-${listId}'
       }
       listId += 1;
       return [...state, newList];
@@ -54,7 +54,7 @@ const listsReducer = (state = initialState, action) => {
     case CONSTANTS.ADD_CARD:
       const newCard = {
         text: action.payload.text,
-        id: cardId
+        id: 'card-${cardId}'
       }
       cardId += 1;
       const newState = state.map(list => {

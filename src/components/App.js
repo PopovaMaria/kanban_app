@@ -2,21 +2,26 @@ import React, { Component } from "react";
 import MyList from "./MyList";
 import { connect } from "react-redux";
 import ActionButton from "./ActionButton";
+import { DragDropContext } from "react-beautiful-dnd";
 
 class App extends Component {
+
+  onDragEnd = () => {
+    //TODO: reordering logic
+  }
+
   render () {
-
     const { lists } = this.props;
-    console.log(lists)
-
     return (
-    <div className="App">
-      <h2>Hello</h2>
+    <DragDropContext onDragEnd={this.onDragEnd}>
+    <div>
+      <h2>Kanban App</h2>
       <div style={styles.listsContainer}>
       { lists.map(list => <MyList key={list.id} listId={list.id} title={list.title} cards={list.cards}/>)}
       <ActionButton list/>
       </div>
     </div>
+    </DragDropContext>
     )
   }
 }
